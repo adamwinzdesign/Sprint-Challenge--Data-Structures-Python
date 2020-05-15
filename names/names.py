@@ -21,12 +21,15 @@ duplicates = []  # Return the list of duplicates in this data structure
 #             duplicates.append(name_1)
 
 # runtime: 0.11520171165466309 seconds
+# convert names to binary search tree
 name_binary_search = BSTNode(names_1[1])
 
 for name in names_1:
+    # insert all names in names_1 into name_binary_search
     name_binary_search.insert(name)
 
 for name in names_2:
+    # if any names in names_2 are already contained in name_binary_search, add that name to duplicates
     if name_binary_search.contains(name):
         duplicates.append(name)
 

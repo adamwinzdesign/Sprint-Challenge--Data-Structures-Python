@@ -5,15 +5,18 @@ class RingBuffer:
         self.oldest = 0
 
     def append(self, item):
+        # if current length of self.data is less than the provided capacity, simply add that item to data
         if len(self.data) < self.capacity:
             self.data.append(item)
         else:
+            # if current length of self.data is equal to the provided capacity, remove the oldest item, then insert the new item where the oldest item had been
             self.data.remove(self.data[self.oldest])
             self.data.insert(self.oldest, item)
-            if self.oldest+1 < self.capacity:
-                self.oldest += 1
-            else:
+            # determine if we need to increment oldest or reset it to 0
+            if self.oldest == self.capacity -1:
                 self.oldest = 0
+            else:
+                self.oldest += 1
 
     def get(self):
         for i in self.data:
